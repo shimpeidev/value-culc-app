@@ -187,7 +187,8 @@ elif place == '対象地区がない':
                 bonusPayBuck = st.selectbox('ボーナス月の倍率（倍）',(1,2,3,4,5,6,7,8,9,10))
                 loanspan = st.slider("ローン年数（年）",max_value=35)
                 interestRate = st.number_input('金利（%）',value=0.65)
-                sellTime = st.slider("売却時期（年後）",max_value=50) + age
+                sellTime = st.slider("売却時期（年後）",max_value=50) 
+                sellAge = sellTime + age
                 if st.form_submit_button('収支を計算'):
                     yearPayPrice = payPrice / loanspan /12
                     nowPrice = payPrice
@@ -204,7 +205,7 @@ elif place == '対象地区がない':
                     payBonus2 = payBonus + feePrice1 + feePrice2
 
 
-                    df_predict2 = pd.DataFrame({'築年数':sellTime,'徒歩':walk_dis,'面積':squ_meta})
+                    df_predict2 = pd.DataFrame({'築年数':sellAge,'徒歩':walk_dis,'面積':squ_meta})
                     df_predict2['築年数'] = df_predict2['築年数'].astype(int)
                     df_predict2['徒歩'] = df_predict2['徒歩'].astype(int)
                     df_predict2['面積'] = df_predict2['面積'].astype(int)
@@ -213,7 +214,8 @@ elif place == '対象地区がない':
                     sellAblePrice = res2[0]
 
                     bop = sellAblePrice - totalPrice
-                    red = (bop / sellTime / 12) * -1 + feePrice1 + feePrice2
+                    red = (bop / sellTime / 12) + feePrice1 + feePrice2
+
 
                     totalPrice = round(totalPrice/10000)
                     totalPrice = int(totalPrice)
@@ -231,9 +233,15 @@ elif place == '対象地区がない':
                     sellAblePrice = "{:,}".format(sellAblePrice) + '万円'
                     bop = round(bop/10000)
                     bop = int(bop)
-                    bop = "{:,}".format(bop) + '万円'
+                    if bop > 0:
+                        bop = '＋' + "{:,}".format(bop) + '万円'
+                    else:
+                        bop = "{:,}".format(bop) + '万円'
                     red = int(red)
-                    red = "{:,}".format(red) + '円'
+                    if red > 0:
+                        red = '＋' + "{:,}".format(red) + '円'
+                    else:
+                        red = "{:,}".format(red) + '円'
 
                     st.metric(label="費用総額",value=totalPrice)
                     st.metric(label="返済額（月）",value=payMonth)
@@ -245,6 +253,7 @@ elif place == '対象地区がない':
                     st.metric(label="収支総額",value=bop)
                     st.metric(label="収支（月）*",value=red)
                     st.text('*資産減産額（月）＋　管理費・修繕積立金で算出。賃貸（家賃）との比較に有効')
+                    
 else:
     if place2 == '':
         st.write('')
@@ -356,7 +365,8 @@ else:
                 bonusPayBuck = st.selectbox('ボーナス月の倍率（倍）',(1,2,3,4,5,6,7,8,9,10))
                 loanspan = st.slider("ローン年数（年）",max_value=35)
                 interestRate = st.number_input('金利（%）',value=0.65)
-                sellTime = st.slider("売却時期（年後）",max_value=50) + age
+                sellTime = st.slider("売却時期（年後）",max_value=50) 
+                sellAge = sellTime + age
                 if st.form_submit_button('収支を計算'):
                     yearPayPrice = payPrice / loanspan /12
                     nowPrice = payPrice
@@ -373,7 +383,7 @@ else:
                     payBonus2 = payBonus + feePrice1 + feePrice2
 
 
-                    df_predict2 = pd.DataFrame({'築年数':sellTime,'徒歩':walk_dis,'面積':squ_meta})
+                    df_predict2 = pd.DataFrame({'築年数':sellAge,'徒歩':walk_dis,'面積':squ_meta})
                     df_predict2['築年数'] = df_predict2['築年数'].astype(int)
                     df_predict2['徒歩'] = df_predict2['徒歩'].astype(int)
                     df_predict2['面積'] = df_predict2['面積'].astype(int)
@@ -382,7 +392,7 @@ else:
                     sellAblePrice = res2[0]
 
                     bop = sellAblePrice - totalPrice
-                    red = (bop / sellTime / 12) * -1 + feePrice1 + feePrice2
+                    red = (bop / sellTime / 12) + feePrice1 + feePrice2
 
 
                     totalPrice = round(totalPrice/10000)
@@ -401,9 +411,15 @@ else:
                     sellAblePrice = "{:,}".format(sellAblePrice) + '万円'
                     bop = round(bop/10000)
                     bop = int(bop)
-                    bop = "{:,}".format(bop) + '万円'
+                    if bop > 0:
+                        bop = '＋' + "{:,}".format(bop) + '万円'
+                    else:
+                        bop = "{:,}".format(bop) + '万円'
                     red = int(red)
-                    red = "{:,}".format(red) + '円'
+                    if red > 0:
+                        red = '＋' + "{:,}".format(red) + '円'
+                    else:
+                        red = "{:,}".format(red) + '円'
 
                     st.metric(label="費用総額",value=totalPrice)
                     st.metric(label="返済額（月）",value=payMonth)
