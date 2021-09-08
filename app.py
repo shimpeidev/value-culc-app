@@ -187,7 +187,7 @@ elif place == '対象地区がない':
                 bonusPayBuck = st.selectbox('ボーナス月の倍率（倍）',(1,2,3,4,5,6,7,8,9,10))
                 loanspan = st.slider("ローン年数（年）",max_value=35)
                 interestRate = st.number_input('金利（%）',value=0.65)
-                sellTime = st.slider("売却時期（年後）",max_value=50)
+                sellTime = st.slider("売却時期（年後）",max_value=50) + age
                 if st.form_submit_button('収支を計算'):
                     yearPayPrice = payPrice / loanspan /12
                     nowPrice = payPrice
@@ -356,7 +356,7 @@ else:
                 bonusPayBuck = st.selectbox('ボーナス月の倍率（倍）',(1,2,3,4,5,6,7,8,9,10))
                 loanspan = st.slider("ローン年数（年）",max_value=35)
                 interestRate = st.number_input('金利（%）',value=0.65)
-                sellTime = st.slider("売却時期（年後）",max_value=50)
+                sellTime = st.slider("売却時期（年後）",max_value=50) + age
                 if st.form_submit_button('収支を計算'):
                     yearPayPrice = payPrice / loanspan /12
                     nowPrice = payPrice
