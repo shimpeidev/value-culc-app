@@ -167,7 +167,7 @@ elif place == '対象地区がない':
                 button = st.form_submit_button('不動産価値を算出',on_click=culc)
 
                 finalPrice = round (culc() / 10000)
-                finalPrice = finalPrice.astype(int)
+                finalPrice = int(finalPrice)
                 finalPriceDisp = "{:,}".format(finalPrice) + '万円'
 
                 if button == False:
@@ -334,7 +334,7 @@ else:
 
 
                 finalPrice = round (culc() / 10000)
-                finalPrice = finalPrice.astype(int)
+                finalPrice = int(finalPrice)
                 finalPriceDisp = "{:,}".format(finalPrice) + '万円'
 
                 if button == False:
