@@ -166,8 +166,9 @@ elif place == '対象地区がない':
                 st.text('*決定係数が高ければ信頼度が高いモデル')
                 button = st.form_submit_button('不動産価値を算出',on_click=culc)
 
-                finalPrice = culc()
-                finalPriceDisp = "{:,}".format(finalPrice) + '円'
+                finalPrice = round (culc() / 10000)
+                finalPrice = finalPrice.astype(int)
+                finalPriceDisp = "{:,}".format(finalPrice) + '万円'
 
                 if button == False:
                     st.write('')
@@ -214,9 +215,9 @@ elif place == '対象地区がない':
                     bop = sellAblePrice - totalPrice
                     red = (bop / sellTime / 12) * -1 + feePrice1 + feePrice2
 
-
+                    totalPrice = round(totalPrice/10000)
                     totalPrice = int(totalPrice)
-                    totalPrice = "{:,}".format(totalPrice) + '円'
+                    totalPrice = "{:,}".format(totalPrice) + '万円'
                     payMonth = int(payMonth)
                     payMonth = "{:,}".format(payMonth) + '円'
                     payBonus = int(payBonus)
@@ -225,21 +226,24 @@ elif place == '対象地区がない':
                     payMonth2 = "{:,}".format(payMonth2) + '円'
                     payBonus2 = int(payBonus2)
                     payBonus2 = "{:,}".format(payBonus2) + '円'
+                    sellAblePrice = round(sellAblePrice/10000)
                     sellAblePrice = int(sellAblePrice)
-                    sellAblePrice = "{:,}".format(sellAblePrice) + '円'
+                    sellAblePrice = "{:,}".format(sellAblePrice) + '万円'
+                    bop = round(bop/10000)
                     bop = int(bop)
-                    bop = "{:,}".format(bop) + '円'
+                    bop = "{:,}".format(bop) + '万円'
                     red = int(red)
                     red = "{:,}".format(red) + '円'
 
                     st.metric(label="費用総額",value=totalPrice)
                     st.metric(label="返済額（月）",value=payMonth)
                     st.metric(label="返済額（ボーナス月）",value=payBonus)
-                    st.metric(label="支払額（月）",value=payMonth2)
-                    st.metric(label="支払額（ボーナス月）",value=payBonus2)
+                    st.metric(label="支払額*（月）",value=payMonth2)
+                    st.metric(label="支払額*（ボーナス月）",value=payBonus2)
+                    st.text('*返済額（月・ボーナス月）＋　管理費・修繕積立金(月)で算出。')
                     st.metric(label="売却見込価格",value=sellAblePrice)
-                    st.metric(label="収支結果",value=bop)
-                    st.metric(label="費用（月）*",value=red)
+                    st.metric(label="収支総額",value=bop)
+                    st.metric(label="収支（月）*",value=red)
                     st.text('*資産減産額（月）＋　管理費・修繕積立金で算出。賃貸（家賃）との比較に有効')
 else:
     if place2 == '':
@@ -329,8 +333,9 @@ else:
                 button = st.form_submit_button('不動産価値を算出',on_click=culc)
 
 
-                finalPrice = culc()
-                finalPriceDisp = "{:,}".format(finalPrice) + '円'
+                finalPrice = round (culc() / 10000)
+                finalPrice = finalPrice.astype(int)
+                finalPriceDisp = "{:,}".format(finalPrice) + '万円'
 
                 if button == False:
                     st.write('')
@@ -380,8 +385,9 @@ else:
                     red = (bop / sellTime / 12) * -1 + feePrice1 + feePrice2
 
 
+                    totalPrice = round(totalPrice/10000)
                     totalPrice = int(totalPrice)
-                    totalPrice = "{:,}".format(totalPrice) + '円'
+                    totalPrice = "{:,}".format(totalPrice) + '万円'
                     payMonth = int(payMonth)
                     payMonth = "{:,}".format(payMonth) + '円'
                     payBonus = int(payBonus)
@@ -390,21 +396,24 @@ else:
                     payMonth2 = "{:,}".format(payMonth2) + '円'
                     payBonus2 = int(payBonus2)
                     payBonus2 = "{:,}".format(payBonus2) + '円'
+                    sellAblePrice = round(sellAblePrice/10000)
                     sellAblePrice = int(sellAblePrice)
-                    sellAblePrice = "{:,}".format(sellAblePrice) + '円'
+                    sellAblePrice = "{:,}".format(sellAblePrice) + '万円'
+                    bop = round(bop/10000)
                     bop = int(bop)
-                    bop = "{:,}".format(bop) + '円'
+                    bop = "{:,}".format(bop) + '万円'
                     red = int(red)
                     red = "{:,}".format(red) + '円'
 
                     st.metric(label="費用総額",value=totalPrice)
                     st.metric(label="返済額（月）",value=payMonth)
                     st.metric(label="返済額（ボーナス月）",value=payBonus)
-                    st.metric(label="支払額（月）",value=payMonth2)
-                    st.metric(label="支払額（ボーナス月）",value=payBonus2)
+                    st.metric(label="支払額*（月）",value=payMonth2)
+                    st.metric(label="支払額*（ボーナス月）",value=payBonus2)
+                    st.text('*返済額（月・ボーナス月）＋　管理費・修繕積立金(月)で算出。')
                     st.metric(label="売却見込価格",value=sellAblePrice)
-                    st.metric(label="収支結果",value=bop)
-                    st.metric(label="費用（月）*",value=red)
+                    st.metric(label="収支総額",value=bop)
+                    st.metric(label="収支（月）*",value=red)
                     st.text('*資産減産額（月）＋　管理費・修繕積立金で算出。賃貸（家賃）との比較に有効')
 
                 
