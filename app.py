@@ -20,9 +20,9 @@ config = {
 firebase = pyrebase.initialize_app(config)
 storage = firebase.storage()
 
-
-st.title('不動産価値シミュレーション')
-st.text('本シミュレーションは統計的計算により算出された予測値です。実態と異なる場合があることを予めご了承のうえご使用ください。')
+st.write('')
+st.title('不動産価格 シミュレーション')
+st.text('本シミュレーションは「不動産取引価格情報　国土交通省」のデータを統計的処理を行い算出された予測値です。実態と異なる場合があることを予めご了承のうえご使用ください。')
 
 placeName = placeNameDic.placeNameDic
 placeNameTokyo = placeNameDic.placeNameTokyoDic
@@ -164,8 +164,6 @@ elif place == '対象地区がない':
                 st.write('決定係数(信頼度合):',rsquared,'%')
                 st.write('サンプル数:',len(df),'件')
                 st.text('*決定係数が高ければ信頼度が高いモデル')
-                st.line_chart(chart_data)
-
                 button = st.form_submit_button('不動産価値を算出',on_click=culc)
 
                 finalPrice = culc()
