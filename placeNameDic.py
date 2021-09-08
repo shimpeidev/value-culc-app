@@ -108,7 +108,7 @@ placeNameKanagawaDic = ['',
 placeNameSaitamaDic = ['',
 'さいたま市西区',
 'さいたま市大宮区',
-'埼玉県さいたま市北区'
+'さいたま市北区'
 ]
 
 placeNameChibaDic = ['',
